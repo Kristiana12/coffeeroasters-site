@@ -1,0 +1,13 @@
+@use 'variables' as *;
+
+@function color($color) {
+  @return map-get($colors, $color);
+}
+
+@function font-size($font-size) {
+  @return map-get($font-sizes, $font-size);
+}
+
+@function breakpoint($breakpoint) {
+  @return map-get($breakpoints, $breakpoint);
+}

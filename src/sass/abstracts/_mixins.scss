@@ -1,0 +1,20 @@
+@use 'variables' as *;
+@use 'functions' as *;
+
+@mixin tablet-small {
+  @media screen and (min-width: breakpoint(breakpoint-tablet-small)) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: breakpoint(breakpoint-tablet-normal)) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: breakpoint(breakpoint-desktop)) {
+    @content;
+  }
+}

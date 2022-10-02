@@ -1,0 +1,38 @@
+$colors: (
+  'color-primary': #0e8784,
+  'color-primary-m': #66d2cf,
+  'color-secondary ': #fdd6ba,
+  'color-light': #fefcf7,
+  'color-light-m': #f4f1eb,
+  'color-disabled': #e2dedb,
+  'color-light-dark': #83888f,
+  'color-dark': #333d4b,
+);
+
+$font-sizes: (
+  //Titles
+  'font-size-title-xxs': 1.5rem,
+  'font-size-title-xs': 1.75rem,
+  'font-size-title-s': 2rem,
+  'font-size-title-m': 2.5rem,
+  'font-size-title-l': 3rem,
+  'font-size-title-xl': 4.5rem,
+
+  //our collection (text)
+  'font-size-collection-tab': 6rem,
+  'font-size-collection-desk': 9.375rem,
+
+  //Same on each device
+  'font-size-text': 1rem,
+  'font-size-btn': 1.125rem,
+  'font-size-numbers': 4.5rem,
+  'font-size-footer-mob': 0.75rem
+);
+
+$breakpoints: (
+  'breakpoint-tablet-small': 500px,
+  'breakpoint-tablet-normal': 768px,
+  'breakpoint-desktop': 1100px,
+);
+
+// font-size: clamp(16px, 4vw, 22px);
