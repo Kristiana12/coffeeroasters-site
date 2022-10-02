@@ -1,0 +1,9 @@
+@use '../abstracts/index' as *;
+
+.steps--content__card {
+  max-width: 330px;
+
+  &--title {
+    margin: 1.5rem auto;
+  }
+}

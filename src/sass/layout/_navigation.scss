@@ -1,13 +1,17 @@
 @use '../abstracts/index' as *;
 
 //mobile
-
 .nav.mobile {
+  position: fixed;
+  top: 0;
+  left: 5%;
+  width: 90%;
+  background-color: color(color-light);
   height: 90px;
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 50;
 
   .nav__img {
     width: min(120px + 8vw, 240px);
@@ -15,23 +19,40 @@
 
   .nav__links {
     position: fixed;
+    z-index: 20;
     min-height: 100vh;
     width: 100vw;
     background: linear-gradient(
       to bottom,
-      color(color-light),
-      rgba(255, 255, 255, 0.3)
+      color(color-light) 40%,
+      rgba(255, 255, 255, 0.4)
     );
-    top: -100%;
-    left: 0;
+    top: 90px;
+    right: -100%;
+    text-align: center;
+    //Effect
+    opacity: 0;
+    height: 0;
+    transition: 0.5s cubic-bezier(0.5, 0.7, 0.46, 0.8);
 
     &--item__link {
-      color: color(color-dark);
-      font-weight: bold;
+      display: block;
+      margin-top: 2rem;
+      transition: color 0.3s;
+
+      &:hover {
+        color: color(color-primary);
+      }
     }
   }
 
   ul.nav__links.active {
-    top: 90px;
+    opacity: 1;
+    height: 100%;
+    right: 0;
+  }
+
+  .menu-icon {
+    cursor: pointer;
   }
 }

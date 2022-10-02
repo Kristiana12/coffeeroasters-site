@@ -448,11 +448,19 @@ textarea {
 }
 
 //Project reset classes
+body {
+  background-color: color(color-light);
+}
+
+main {
+  margin-top: 90px;
+}
+
 .container {
   width: min(90%, 1280px);
   margin: 0 auto;
 }
 
-.nav a {
+a {
   text-decoration: none;
 }

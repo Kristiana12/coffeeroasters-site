@@ -8,6 +8,10 @@
   @return map-get($font-sizes, $font-size);
 }
 
+@function font-family($font-family) {
+  @return map-get($font-familys, $font-family);
+}
+
 @function breakpoint($breakpoint) {
   @return map-get($breakpoints, $breakpoint);
 }

@@ -1,0 +1,30 @@
+@use '../abstracts/index' as *;
+
+.services {
+  position: relative;
+  text-align: center;
+
+  ::before {
+    @include before;
+  }
+  &__description {
+    padding: 4rem 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+    &--title {
+      margin-bottom: 1.5rem;
+    }
+    &--para {
+      color: color(color-light-m);
+    }
+  }
+}
+
+.services__features {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}

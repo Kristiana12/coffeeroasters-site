@@ -1,0 +1,15 @@
+@use '../abstracts/index' as *;
+
+.services__features--card {
+  padding: 4.5rem 1.75rem 3.125rem;
+  background-color: color(color-primary);
+  border-radius: 8px;
+  max-width: 290px;
+
+  &__title {
+    margin: 3.5rem auto 1.5rem;
+  }
+  &__para {
+    color: color(color-light-m);
+  }
+}

@@ -1,1 +1,42 @@
 @use '../abstracts/index' as *;
+
+footer {
+  text-align: center;
+  padding: 3.4rem 0;
+  background-color: color(color-dark);
+
+  .footer-nav__list {
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    &--item__link {
+      transition: all 0.5s;
+
+      &:hover {
+        color: color(color-primary);
+      }
+    }
+  }
+
+  .socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    min-width: 120px;
+
+    &--item {
+      cursor: pointer;
+
+      & path {
+        transition: 0.5s;
+      }
+
+      &:hover path {
+        fill: color(color-primary);
+      }
+    }
+  }
+}

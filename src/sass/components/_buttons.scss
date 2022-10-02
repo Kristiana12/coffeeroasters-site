@@ -1,1 +1,5 @@
 @use '../abstracts/index' as *;
+
+.btn-primary {
+  @include btn(color-light, color-primary);
+}
