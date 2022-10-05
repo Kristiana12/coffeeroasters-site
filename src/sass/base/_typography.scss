@@ -10,22 +10,29 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: font-family('font-family-title'), serif;
+  font-family: font-family(font-family-title), serif;
   font-weight: 900;
 }
 
 p {
-  font-family: font-family('font-family-text');
+  font-family: font-family(font-family-text);
   line-height: 1.8;
   @include title(color-light-dark, font-size-text);
 }
 
 //navigation
 .nav {
-  .nav__links--item__link {
+  .nav__links--item__link:link,
+  .nav__links--item__link:visited {
     font-family: font-family('font-family-title'), serif;
     font-weight: bold;
     @include title(color-dark, font-size-title-xxs);
+
+    @include tablet {
+      font-family: font-family('font-family-text'), sans-serif;
+      @include title(color-light-dark, font-size-text);
+      font-weight: 400;
+    }
   }
 }
 
@@ -33,6 +40,13 @@ p {
 .header {
   &__content--title {
     @include title(color-light, font-size-title-m);
+
+    @include tablet-small {
+      font-size: font-size(font-size-title-l);
+    }
+    @include desktop {
+      font-size: font-size(font-size-title-xl);
+    }
   }
 }
 
@@ -40,12 +54,22 @@ p {
 .products {
   &__title {
     @include title(color-dark, font-size-title-m);
+    opacity: 0.8;
 
     @supports (-webkit-background-clip: text) {
       background: linear-gradient(color(color-light-dark), color(color-light));
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    @include tablet-small {
+      font-size: font-size(font-size-collection-tab);
+      opacity: 0.4;
+    }
+
+    @include desktop {
+      font-size: font-size(font-size-collection-desk);
     }
   }
 
@@ -82,8 +106,8 @@ p {
 }
 
 //footer
-
-.footer-nav__list--item__link {
+.footer-nav__list--item__link:link,
+.footer-nav__list--item__link:visited {
   @include title(color-light-dark, font-size-footer);
   font-family: font-family(font-family-text);
   font-weight: 600;

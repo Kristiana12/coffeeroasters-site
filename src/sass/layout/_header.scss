@@ -13,9 +13,21 @@
     gap: 1.5rem;
     text-align: center;
     padding: 0 1.5rem;
-    max-width: 330px;
+    max-width: 420px;
+
+    @include tablet-small {
+      text-align: left;
+      align-items: flex-start;
+      margin-left: 3.75rem;
+    }
+
+    @include desktop {
+      max-width: 495px;
+    }
+
     &--para {
       margin-bottom: 1rem;
+      max-width: 440px;
     }
   }
 

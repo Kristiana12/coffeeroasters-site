@@ -1,0 +1,2 @@
+const btnMenuOpen=document.querySelector(".menu-icon");btnMenuOpen.addEventListener("click",(function(){let e=`public/assets/shared/mobile/icon-${btnMenuOpen.getAttribute("src").includes("hamburger")?"close":"hamburger"}.svg`;btnMenuOpen.setAttribute("src",e),document.querySelector(".nav__links").classList.toggle("active")}));
+//# sourceMappingURL=navigation.js.map

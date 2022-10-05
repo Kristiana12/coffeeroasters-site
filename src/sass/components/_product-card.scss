@@ -1,7 +1,6 @@
 @use '../abstracts/index' as *;
 
 .products__presentation--card {
-  max-width: 290px;
   margin: 0 auto;
   padding: 0 0.5rem;
 
@@ -12,6 +11,6 @@
   }
 
   &__title {
-    margin: 1.5rem auto 1rem;
+    margin: 1.5rem 0 1rem;
   }
 }

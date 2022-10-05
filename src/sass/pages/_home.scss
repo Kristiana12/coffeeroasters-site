@@ -5,3 +5,9 @@
   flex-direction: column;
   gap: 7.5rem;
 }
+
+.container,
+.footer-container {
+  width: min(90%, 1280px);
+  margin: 0 auto;
+}

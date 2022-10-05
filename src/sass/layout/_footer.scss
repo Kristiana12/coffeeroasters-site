@@ -1,9 +1,17 @@
 @use '../abstracts/index' as *;
 
 footer {
+  margin-top: 90px;
   text-align: center;
   padding: 3.4rem 0;
   background-color: color(color-dark);
+
+  .footer-container {
+    @include desktop {
+      display: flex;
+      align-items: center;
+    }
+  }
 
   .footer-nav__list {
     margin: 3rem auto;
@@ -11,7 +19,20 @@ footer {
     flex-direction: column;
     gap: 1.5rem;
 
-    &--item__link {
+    @include tablet {
+      margin: 2rem 0 4rem;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    @include desktop {
+      margin: 0 6rem;
+    }
+
+    &--item__link:link,
+    &--item__link:visited {
       transition: all 0.5s;
 
       &:hover {
@@ -21,10 +42,7 @@ footer {
   }
 
   .socials {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
+    @include flex(center, center, 1.5rem);
     min-width: 120px;
 
     &--item {
@@ -37,6 +55,10 @@ footer {
       &:hover path {
         fill: color(color-primary);
       }
+    }
+
+    @include desktop {
+      margin-left: auto;
     }
   }
 }

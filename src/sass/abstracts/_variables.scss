@@ -19,8 +19,8 @@ $font-sizes: (
   'font-size-title-xl': 4.5rem,
 
   //our collection (text)
-  'font-size-collection-tab': 6rem,
-  'font-size-collection-desk': 9.375rem,
+  'font-size-collection-tab': calc(1.5rem + 8vw),
+  'font-size-collection-desk': 10rem,
 
   //Same on each device
   'font-size-text': 1rem,

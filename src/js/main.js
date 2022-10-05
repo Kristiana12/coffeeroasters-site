@@ -1,60 +1,101 @@
-const btnMenuOpen = document.querySelector('.menu-icon');
 const imgsToLoad = document.querySelectorAll('img[data-src]');
+const headerChildren = [...document.querySelector('.header__content').children];
+const sections = document.querySelectorAll('.section');
+const cards = document.querySelectorAll('.card');
 
-const headerAnimation = document.querySelector('.header__content');
-
-// Hide Header Elements
-const hideHeader = () => {
-  for (let el of headerAnimation.children) {
-    el.classList.add('hidden');
-  }
+// Functions
+// Hide DOM Elements
+const hideElements = (DOMElements) => {
+  DOMElements.forEach((el) => el.classList.add('hidden'));
 };
-hideHeader();
+//Show DOM Elements
+const showElements = (DOMElements) => {
+  DOMElements.forEach((el) => el.classList.remove('hidden'));
+};
 
-//Animations on header
+hideElements(headerChildren);
+hideElements(sections);
+hideElements(cards);
+
+//Add breakline
+const addBreakLine = () => {
+  const withBr = `Pick your <br> coffee`;
+  const withoutBr = `Pick your coffee`;
+  const text = window.innerWidth >= 768 ? withBr : withoutBr;
+  document.querySelector('.steps--content__card--title').innerHTML = text;
+};
+addBreakLine();
+
+window.addEventListener('resize', addBreakLine);
+
+//Fade in Header Elements
 document.addEventListener('DOMContentLoaded', function () {
-  setTimeout(function () {
-    for (let el of headerAnimation.children) {
-      el.classList.remove('hidden');
-    }
-    headerAnimation.querySelector('h1').classList.add('slide-left');
-    headerAnimation.querySelector('p').classList.add('slide-left');
-    headerAnimation.querySelector('a').classList.add('fade-in');
-  }, 1000);
+  headerChildren.forEach((el, i) => {
+    showElements(headerChildren);
+    el.classList.add('fade-in');
+  });
 });
 
-//Handlers Show Hide Navigation
-btnMenuOpen.addEventListener('click', function () {
-  const icon = btnMenuOpen.getAttribute('src').includes('hamburger')
-    ? 'close'
-    : 'hamburger';
-
-  let path = `public/assets/shared/mobile/icon-${icon}.svg`;
-  btnMenuOpen.setAttribute('src', path);
-
-  //Toggle class
-  document.querySelector('.nav__links').classList.toggle('active');
-});
-
+//OBSERVERS
 //Lazy loading images
 const loadImg = (entries, observer) => {
-  const [entry] = entries;
-  if (!entry.isIntersecting) return;
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
 
-  //Replace src with data-src
-  entry.target.src = entry.target.dataset.src;
-  //Show img after loaded
-  entry.target.addEventListener('load', function () {
-    entry.target.classList.remove('lazy-img');
+    //Replace src with data-src
+    entry.target.src = entry.target.dataset.src;
+    //Show img after loaded
+    entry.target.addEventListener('load', function () {
+      entry.target.classList.remove('lazy-img');
+    });
+
+    observer.unobserve(entry.target);
   });
-
-  observer.unobserve(entry.target);
 };
 
-const imgObserver = new IntersectionObserver(loadImg, {
+const imgObs = new IntersectionObserver(loadImg, {
   root: null,
   threshold: 0,
   rootMargin: '100px',
 });
 
-imgsToLoad.forEach((img) => imgObserver.observe(img));
+imgsToLoad.forEach((img) => imgObs.observe(img));
+
+//Section fadind-sliding In
+const showSection = (entries, observer) => {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove('hidden');
+
+  observer.unobserve(entry.target);
+};
+
+const sectionObs = new IntersectionObserver(showSection, {
+  root: null,
+  threshold: 0.1,
+});
+
+sections.forEach((sect) => sectionObs.observe(sect));
+
+//Fade-in Cards
+const showCards = (entries, observer) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.remove('hidden');
+    entry.target.classList.add('fade-in');
+
+    observer.unobserve(entry.target);
+  });
+};
+
+const cardsObs = new IntersectionObserver(showCards, {
+  root: null,
+  threshold: 0.15,
+});
+
+cards.forEach((card) => cardsObs.observe(card));
+
+//Add breakline
+// console.log(document.querySelector('.steps--content__card--title'));

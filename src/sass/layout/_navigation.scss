@@ -1,17 +1,19 @@
 @use '../abstracts/index' as *;
 
-//mobile
-.nav.mobile {
+//navigation
+.nav {
   position: fixed;
   top: 0;
-  left: 5%;
-  width: 90%;
+  left: 50%;
+  width: min(90%, 1280px);
+  transform: translateX(-50%);
   background-color: color(color-light);
   height: 90px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(space-between, center, 0);
   z-index: 50;
+
+  @include desktop {
+  }
 
   .nav__img {
     width: min(120px + 8vw, 240px);
@@ -35,6 +37,37 @@
     height: 0;
     transition: 0.5s cubic-bezier(0.5, 0.7, 0.46, 0.8);
 
+    @include tablet {
+      position: static;
+      @include flex(space-between, center, 0);
+      opacity: 1;
+      min-height: 100%;
+      width: 300px;
+
+      //remove effect when reducing viewport size
+      background: transparent;
+      transition: 0s;
+    }
+
+    @include tablet {
+      &--item {
+        position: relative;
+        padding: 0.5rem 0.2rem;
+
+        &::before {
+          @include before(100%, 0, 100%, 2px, color(color-primary));
+          transform-origin: right;
+          transform: scaleX(0);
+          transition: transform 0.5s;
+        }
+
+        &:hover::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+    }
+
     &--item__link {
       display: block;
       margin-top: 2rem;
@@ -43,16 +76,24 @@
       &:hover {
         color: color(color-primary);
       }
+
+      @include tablet {
+        margin-top: 0;
+      }
     }
   }
 
   ul.nav__links.active {
     opacity: 1;
     height: 100%;
-    right: 0;
+    right: -5%;
   }
 
   .menu-icon {
     cursor: pointer;
+
+    @include tablet {
+      display: none;
+    }
   }
 }

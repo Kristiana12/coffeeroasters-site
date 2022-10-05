@@ -5,10 +5,12 @@
   text-align: center;
 
   ::before {
-    @include before;
+    @include before(0, 0, 100%, 60%, color(color-dark));
+    z-index: -1;
+    border-radius: 10px;
   }
   &__description {
-    padding: 4rem 0.5rem;
+    padding: 0 0.5rem 4rem;
     max-width: 500px;
     margin: 0 auto;
     &--title {
@@ -21,10 +23,16 @@
 }
 
 .services__features {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  @include flex(center, center, 1.5rem);
   flex-direction: column;
-  gap: 1.5rem;
+  align-content: center;
+
+  @include tablet {
+    text-align: left;
+  }
+
+  @include desktop {
+    flex-direction: row;
+    align-items: stretch;
+  }
 }

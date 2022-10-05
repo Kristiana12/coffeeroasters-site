@@ -1,7 +1,41 @@
 @use '../abstracts/index' as *;
 
 .steps--content__card {
+  margin: 0 auto;
   max-width: 330px;
+
+  .circle {
+    display: none;
+    height: 31px;
+    width: 31px;
+    border-radius: 50%;
+    background-color: color(color-light);
+    border: 1px solid color(color-primary);
+    margin: 2.5rem 0 3rem;
+
+    @include tablet {
+      display: block;
+    }
+  }
+
+  @include tablet {
+    //For the circle
+    position: relative;
+
+    &:not(:last-of-type)::before {
+      @include before(
+        calc(40px + (33px / 2)),
+        33px,
+        100%,
+        2px,
+        color(color-secondary)
+      );
+    }
+  }
+
+  &:not(:last-of-type) {
+    margin-bottom: 3.5rem;
+  }
 
   &--title {
     margin: 1.5rem auto;
