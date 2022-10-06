@@ -2,7 +2,6 @@
 
 .services {
   position: relative;
-  text-align: center;
 
   ::before {
     @include before(0, 0, 100%, 60%, color(color-dark));

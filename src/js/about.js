@@ -1,3 +1,3 @@
-import { navigation } from './navigation';
+const sourceSetImgs = document.querySelectorAll('img[data-src]');
 
-navigation();
+// console.log(sourceSetImgs.getAttribute('src'));

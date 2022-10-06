@@ -1,4 +1,7 @@
 const btnMenuOpen = document.querySelector('.menu-icon');
+const headerChildren = [...document.querySelector('.header__content').children];
+
+const sections = document.querySelectorAll('.section');
 
 //Show-Hide Navigation
 btnMenuOpen.addEventListener('click', function () {
@@ -13,13 +16,41 @@ btnMenuOpen.addEventListener('click', function () {
   document.querySelector('.nav__links').classList.toggle('active');
 });
 
-//Add breakline
-const addBreakLine = () => {
-  const withBr = `Pick your <br> coffee`;
-  const withoutBr = `Pick your coffee`;
-  const text = window.innerWidth >= 768 ? withBr : withoutBr;
-  document.querySelector('.steps--content__card--title').innerHTML = text;
+// Functions
+// Hide DOM Elements
+const hideElements = (DOMElements) => {
+  DOMElements.forEach((el) => el.classList.add('hidden'));
 };
-addBreakLine();
+//Show DOM Elements
+const showElements = (DOMElements) => {
+  DOMElements.forEach((el) => el.classList.remove('hidden'));
+};
 
-window.addEventListener('resize', addBreakLine);
+hideElements(headerChildren);
+hideElements(sections);
+
+//Fade in Header Elements
+document.addEventListener('DOMContentLoaded', function () {
+  headerChildren.forEach((el) => {
+    showElements(headerChildren);
+    el.classList.add('fade-in');
+  });
+});
+
+//Section fadind-sliding In
+const showSection = (entries, observer) => {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove('hidden');
+
+  observer.unobserve(entry.target);
+};
+
+const sectionObs = new IntersectionObserver(showSection, {
+  root: null,
+  threshold: 0.1,
+});
+
+sections.forEach((sect) => sectionObs.observe(sect));

@@ -1,0 +1,13 @@
+@use '../abstracts/index' as *;
+
+.about__grid-layout {
+  width: min(90%, 1280px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7.5rem;
+}
+
+.about__header {
+  height: max(60vh, 330px);
+}

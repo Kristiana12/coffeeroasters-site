@@ -1,29 +1,7 @@
 @use '../abstracts/index' as *;
 
 .steps {
-  text-align: center;
-
-  @include tablet {
-    text-align: left;
-  }
-
-  &--title {
-    margin-bottom: 5rem;
-
-    @include tablet {
-      margin-bottom: 0;
-    }
-  }
-
   &--content {
     margin-bottom: 6.4rem;
-
-    @include tablet {
-      max-width: 1045px;
-      display: flex;
-      gap: min(0.2rem + 2vw, 3rem);
-
-      margin-bottom: 1rem;
-    }
   }
 }

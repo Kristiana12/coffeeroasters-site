@@ -1,0 +1,38 @@
+@use '../abstracts/index' as *;
+
+.about__description {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(200px, auto) 1fr;
+  @include tablet {
+    text-align: left;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 530px;
+    gap: calc(1.5rem + 1vw);
+  }
+
+  @include desktop {
+    justify-items: center;
+  }
+
+  picture {
+    img {
+      max-width: 380px;
+      @include imgFillParent;
+      border-radius: 8px;
+    }
+  }
+
+  &--content {
+    @include desktop {
+      max-width: 370px;
+    }
+  }
+  &--content__title {
+    margin: 3rem 0 1.85rem;
+
+    @include tablet {
+      margin-top: 0;
+    }
+  }
+}

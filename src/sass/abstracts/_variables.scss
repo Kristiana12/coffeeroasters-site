@@ -4,6 +4,7 @@ $colors: (
   'color-secondary': #fdd6ba,
   'color-light': #fefcf7,
   'color-light-m': #f4f1eb,
+  'color-light-op': rgba(244, 241, 235, 0.8),
   'color-disabled': #e2dedb,
   'color-light-dark': #83888f,
   'color-dark': #333d4b,
@@ -36,8 +37,7 @@ $font-familys: (
 
 $breakpoints: (
   'breakpoint-tablet-small': 500px,
+  'breakpoint-tablet-medium': 600px,
   'breakpoint-tablet-normal': 768px,
-  'breakpoint-desktop': 1100px,
+  'breakpoint-desktop': 1000px,
 );
-
-// font-size: clamp(16px, 4vw, 22px);

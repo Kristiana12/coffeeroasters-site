@@ -1,7 +1,6 @@
 @use '../abstracts/index' as *;
 
 .products {
-  text-align: center;
   max-width: 1110px;
   margin: auto;
   @include tablet-small {
@@ -9,7 +8,6 @@
   }
 
   &__title {
-    text-align: center;
     margin-bottom: 2rem;
 
     @include desktop {
@@ -20,6 +18,7 @@
   &__presentation {
     @include desktop {
       display: flex;
+      gap: 1.5rem;
     }
 
     &--card:not(:first-child) {
@@ -39,7 +38,7 @@
         grid-template-columns: repeat(2, 1fr);
 
         @include desktop {
-          @include flex(center, center, 1.85rem);
+          @include flex(flex-start, center, 1.85rem);
           flex-direction: column;
         }
 

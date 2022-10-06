@@ -12,15 +12,47 @@
   animation: fadeIn 0.8s 0.5s ease-in-out backwards;
 }
 
+//Titles
+.capitalize {
+  text-transform: capitalize;
+}
+
+.big-title {
+  margin-bottom: 4.5rem;
+
+  @include tablet {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.small-title {
+  margin: 1.5rem auto;
+}
+
+.lighter {
+  color: color(color-light-op);
+}
+
 .card {
   transition: opacity 1.5s;
 }
 
 .section {
   transition: transform 1s, opacity 1s;
+  text-align: center;
 }
 
 .section.hidden {
   transform: translateY(5rem);
   opacity: 0;
+}
+
+//Steps - Location Section
+.col-3-layout {
+  @include tablet {
+    text-align: left;
+    max-width: 1045px;
+    display: flex;
+    gap: min(0.2rem + 2vw, 3rem);
+  }
 }

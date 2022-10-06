@@ -1,0 +1,75 @@
+@use '../abstracts/index' as *;
+
+.about__quality {
+  display: grid;
+  grid-template-columns: 5% 1fr 5%;
+  grid-template-rows: auto auto 1fr;
+
+  @include desktop {
+    grid-template-columns: 65% 30% 1fr;
+    grid-template-rows: 60px 1fr 1fr;
+  }
+
+  > picture {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    z-index: 1;
+
+    @include desktop {
+      grid-row: 1 / 2;
+      max-width: 445px;
+      height: 475px;
+    }
+
+    img {
+      @include imgFillParent;
+      border-radius: 8px;
+      max-width: 500px;
+
+      @include desktop {
+        max-width: 445px;
+        height: 374px;
+      }
+    }
+  }
+
+  &--content {
+    grid-column: 1 / 4;
+    grid-row: 2 / 4;
+    width: 90%;
+    padding: calc(7.5rem + 5vw) calc(1.5rem + 1vw) calc(3.75rem + 2vw);
+    background: url(../assets/about/mobile/bg-quality.png) center/cover
+      no-repeat;
+    border-radius: 8px;
+
+    @include tablet-small {
+      padding: calc(7.5rem + 10vw) calc(1.5rem + 1vw) calc(3.75rem + 2vw);
+    }
+    @include tablet {
+      padding: calc(7.5rem + 8vw) calc(1.5rem + 1vw) calc(3.75rem + 2vw);
+    }
+
+    @include desktop {
+      text-align: left;
+      padding: 5.5rem 2.5rem 7.5rem 5.5rem;
+    }
+  }
+
+  &--content__title {
+    margin-bottom: 1.5rem;
+    @include desktop {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &--content__para {
+    color: color(color-light-op);
+    max-width: 500px;
+    margin: 0 auto;
+
+    @include desktop {
+      max-width: 540px;
+      margin: 0;
+    }
+  }
+}

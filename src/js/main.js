@@ -30,7 +30,7 @@ window.addEventListener('resize', addBreakLine);
 
 //Fade in Header Elements
 document.addEventListener('DOMContentLoaded', function () {
-  headerChildren.forEach((el, i) => {
+  headerChildren.forEach((el) => {
     showElements(headerChildren);
     el.classList.add('fade-in');
   });

@@ -36,5 +36,8 @@
     border-radius: 10px;
     z-index: -1;
     @include imgFillParent;
+    @include tablet-small {
+      object-position: 70% top;
+    }
   }
 }

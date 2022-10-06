@@ -11,3 +11,11 @@
   width: min(90%, 1280px);
   margin: 0 auto;
 }
+
+.steps,
+.about__location {
+  @include tablet {
+    text-align: left;
+    margin-left: 3%;
+  }
+}

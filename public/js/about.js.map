@@ -1,1 +1,1 @@
-{"version":3,"file":"about.js","names":["navigation"],"sources":["about.js"],"mappings":"OAASA,eAAkB,eAE3BA"}
+{"version":3,"file":"about.js","names":["sourceSetImgs","document","querySelectorAll"],"sources":["about.js"],"mappings":"AAAA,MAAMA,cAAgBC,SAASC,iBAAiB"}

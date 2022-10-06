@@ -6,12 +6,18 @@
 @use 'components/utility-classes';
 @use 'components/services-card';
 @use 'components/steps-card';
+@use 'components/location-card';
 
 @use 'layout/navigation';
-@use 'layout/header';
 @use 'layout/products';
 @use 'layout/services';
 @use 'layout/steps';
+@use 'layout/description';
+@use 'layout/quality';
+@use 'layout/location';
+
+@use 'layout/header';
 @use 'layout/footer';
 
 @use 'pages/home';
+@use 'pages/about';

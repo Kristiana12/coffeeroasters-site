@@ -11,7 +11,7 @@
     border-radius: 50%;
     background-color: color(color-light);
     border: 1px solid color(color-primary);
-    margin: 2.5rem 0 3rem;
+    margin-bottom: 3rem;
 
     @include tablet {
       display: block;
@@ -24,7 +24,7 @@
 
     &:not(:last-of-type)::before {
       @include before(
-        calc(40px + (33px / 2)),
+        calc((33px / 2)),
         33px,
         100%,
         2px,
@@ -35,9 +35,5 @@
 
   &:not(:last-of-type) {
     margin-bottom: 3.5rem;
-  }
-
-  &--title {
-    margin: 1.5rem auto;
   }
 }

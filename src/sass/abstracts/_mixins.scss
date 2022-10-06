@@ -7,6 +7,12 @@
   }
 }
 
+@mixin tablet-medium {
+  @media screen and (min-width: breakpoint(breakpoint-tablet-medium)) {
+    @content;
+  }
+}
+
 @mixin tablet {
   @media screen and (min-width: breakpoint(breakpoint-tablet-normal)) {
     @content;
