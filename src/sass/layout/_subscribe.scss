@@ -1,0 +1,61 @@
+@use '../abstracts/index' as *;
+
+.subscribe {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+
+  @include desktop {
+    display: grid;
+    grid-template-columns: 255px 1fr;
+  }
+
+  &__categories {
+    display: none;
+
+    @include desktop {
+      display: block;
+    }
+  }
+
+  &--card {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    align-items: center;
+
+    @include desktop {
+      grid-column: 2 / 3;
+    }
+
+    &__title {
+      max-width: 240px;
+      margin-bottom: 0;
+    }
+
+    &__img {
+      transform: rotate(-180deg);
+      transition: 0.5s ease-in-out;
+      cursor: pointer;
+    }
+
+    &__options {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      //Transition height with JS
+      overflow: hidden;
+      height: auto;
+      transition: height 0.5s ease-out;
+
+      grid-column: 1 / -1;
+
+      @include tablet {
+        flex-direction: row;
+        gap: 0.5rem;
+      }
+    }
+  }
+}

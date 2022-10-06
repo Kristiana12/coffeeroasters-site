@@ -3,7 +3,12 @@
 .about__location--content__card {
   &:not(:last-of-type) {
     margin-bottom: 3.5rem;
+
+    @include tablet {
+      margin-bottom: 0;
+    }
   }
+
   p {
     color: color(color-dark);
   }

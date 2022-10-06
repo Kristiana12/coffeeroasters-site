@@ -1,0 +1,32 @@
+@use '../abstracts/index' as *;
+
+.subscribe--card {
+  text-align: left;
+
+  &__option {
+    padding: 1.5rem 2.5rem 1.5rem 1.5rem;
+    border-radius: 8px;
+    background-color: color(color-light-m);
+    transition: background-color 0.3s;
+    cursor: pointer;
+
+    @include tablet {
+      min-height: 210px;
+      padding: 2rem 2.5rem 3.5rem;
+    }
+
+    &--title {
+      margin-bottom: 0.5rem;
+      @include tablet {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    &:hover {
+      background-color: color(color-secondary);
+    }
+  }
+  &__option.active:hover {
+    background-color: color(color-primary-m);
+  }
+}

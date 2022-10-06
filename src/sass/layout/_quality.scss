@@ -47,11 +47,13 @@
     }
     @include tablet {
       padding: calc(7.5rem + 8vw) calc(1.5rem + 1vw) calc(3.75rem + 2vw);
+      background: url(../assets/about/tablet/bg-quality.png) center/cover;
     }
 
     @include desktop {
       text-align: left;
       padding: 5.5rem 2.5rem 7.5rem 5.5rem;
+      background: url(../assets/about/desktop/bg-quality.png) center/cover;
     }
   }
 

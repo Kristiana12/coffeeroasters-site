@@ -4,15 +4,21 @@
 .nav {
   position: fixed;
   top: 0;
-  left: 50%;
+  left: 0;
+  bottom: 0;
+  right: 0;
   width: min(90%, 1280px);
-  transform: translateX(-50%);
+  padding-left: 5%;
+  padding-right: 5%;
   background-color: color(color-light);
   height: 90px;
   @include flex(space-between, center, 0);
   z-index: 50;
 
   @include desktop {
+    padding: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .nav__img {
@@ -86,7 +92,7 @@
   ul.nav__links.active {
     opacity: 1;
     height: 100%;
-    right: -5%;
+    right: 0%;
   }
 
   .menu-icon {

@@ -7,6 +7,7 @@
 @use 'components/services-card';
 @use 'components/steps-card';
 @use 'components/location-card';
+@use 'components/subcribe-card';
 
 @use 'layout/navigation';
 @use 'layout/products';
@@ -15,9 +16,12 @@
 @use 'layout/description';
 @use 'layout/quality';
 @use 'layout/location';
+@use 'layout/subscribe';
+@use 'layout/order';
 
 @use 'layout/header';
 @use 'layout/footer';
 
 @use 'pages/home';
 @use 'pages/about';
+@use 'pages/plan';

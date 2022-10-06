@@ -5,6 +5,10 @@
   max-width: 330px;
 
   .circle {
+    //to appear on top of the ::before
+    position: relative;
+    z-index: 1;
+
     display: none;
     height: 31px;
     width: 31px;
@@ -25,11 +29,15 @@
     &:not(:last-of-type)::before {
       @include before(
         calc((33px / 2)),
-        33px,
-        100%,
+        calc((33px / 2)),
+        calc(100% + 24px),
         2px,
         color(color-secondary)
       );
+
+      @include desktop {
+        width: calc(100% + 48px);
+      }
     }
   }
 

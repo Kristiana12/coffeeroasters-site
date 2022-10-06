@@ -1,0 +1,53 @@
+@use '../abstracts/index' as *;
+
+.plan__container {
+  display: flex;
+  flex-direction: column;
+  width: min(90%, 1280px);
+  margin: 0 auto;
+}
+
+//Distance from last button
+.plan__container > *:not(:last-of-type) {
+  margin-bottom: 7.5rem;
+}
+
+.plan__container > *:last-of-type {
+  margin-bottom: 5rem;
+  @include tablet {
+    margin-bottom: 3rem;
+  }
+}
+
+//STEPS
+.plan__steps {
+  background: url(../assets/plan/mobile/bg-steps.png) no-repeat center/cover;
+  padding: 5rem 1.5rem;
+  border-radius: 8px;
+  margin-left: -5%;
+  margin-right: -5%;
+
+  @include tablet {
+    padding: 6rem 3.5rem;
+    max-width: 1280px;
+  }
+  @include desktop {
+    margin: auto 0;
+  }
+
+  .circle {
+    background-color: transparent;
+  }
+
+  .steps--content__card--title {
+    color: color(color-light);
+  }
+}
+
+.plan__btn-primary {
+  align-self: center;
+
+  @include desktop {
+    align-self: flex-end;
+  }
+}

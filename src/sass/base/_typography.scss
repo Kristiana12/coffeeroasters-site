@@ -134,3 +134,25 @@ p {
     font-size: font-size(font-size-title-m);
   }
 }
+
+//Titles
+.capitalize {
+  text-transform: capitalize;
+  font-size: font-size(font-size-title-s);
+}
+
+//Order
+.order {
+  &--title {
+    font-family: font-family(font-family-text);
+    text-transform: uppercase;
+    font-weight: normal;
+    @include title(color-light-op, font-size-text);
+  }
+
+  &--text {
+    font-family: font-family(font-family-title);
+    @include title(color-light, font-size-title-xxs);
+    line-height: 1.8;
+  }
+}

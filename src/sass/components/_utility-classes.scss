@@ -12,11 +12,6 @@
   animation: fadeIn 0.8s 0.5s ease-in-out backwards;
 }
 
-//Titles
-.capitalize {
-  text-transform: capitalize;
-}
-
 .big-title {
   margin-bottom: 4.5rem;
 
@@ -33,10 +28,15 @@
   color: color(color-light-op);
 }
 
+.darker {
+  color: color(color-dark);
+}
+
 .card {
   transition: opacity 1.5s;
 }
 
+//Sections
 .section {
   transition: transform 1s, opacity 1s;
   text-align: center;
@@ -47,6 +47,15 @@
   opacity: 0;
 }
 
+//about - plan
+.small__header {
+  height: min(60vh, 530px);
+}
+//home
+.big__header {
+  height: calc(100vh - 120px);
+}
+
 //Steps - Location Section
 .col-3-layout {
   @include tablet {
@@ -55,4 +64,31 @@
     display: flex;
     gap: min(0.2rem + 2vw, 3rem);
   }
+
+  @include desktop {
+    gap: 3rem;
+  }
+}
+
+//Plan
+.subscribe--card__option.active {
+  background-color: color(color-primary);
+
+  h3 {
+    color: color(color-light);
+  }
+
+  p {
+    color: color(color-light-op);
+  }
+}
+
+//close options
+.subscribe--card__img.close {
+  transform: rotate(0);
+}
+
+//Order
+.colorize {
+  color: color(color-primary);
 }
