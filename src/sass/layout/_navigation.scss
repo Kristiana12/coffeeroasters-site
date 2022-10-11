@@ -61,7 +61,7 @@
         padding: 0.5rem 0.2rem;
 
         &::before {
-          @include before(100%, 0, 100%, 2px, color(color-primary));
+          @include before(100%, 0, 100%, 2px, color-primary);
           transform-origin: right;
           transform: scaleX(0);
           transition: transform 0.5s;

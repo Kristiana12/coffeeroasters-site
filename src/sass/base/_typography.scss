@@ -156,3 +156,14 @@ p {
     line-height: 1.8;
   }
 }
+
+// Categories - plan
+.subscribe__categories {
+  @include desktop {
+    p {
+      @include title(color-dark, font-size-title-xxs);
+      font-weight: bold;
+      font-family: font-family(font-family-title);
+    }
+  }
+}

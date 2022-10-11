@@ -32,7 +32,7 @@
         calc((33px / 2)),
         calc(100% + 24px),
         2px,
-        color(color-secondary)
+        color-secondary
       );
 
       @include desktop {

@@ -4,7 +4,7 @@
   position: relative;
 
   ::before {
-    @include before(0, 0, 100%, 60%, color(color-dark));
+    @include before(0, 0, 100%, 60%, color-dark);
     z-index: -1;
     border-radius: 10px;
   }

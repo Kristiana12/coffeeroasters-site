@@ -7,6 +7,7 @@ $colors: (
   'color-light-op': rgba(244, 241, 235, 0.8),
   'color-disabled': #e2dedb,
   'color-light-dark': #83888f,
+  'color-lighter-dark': #dedede,
   'color-dark': #333d4b,
 );
 
@@ -25,6 +26,7 @@ $font-sizes: (
 
   //Same on each device
   'font-size-text': 1rem,
+  'font-size-text-m': 1.25rem,
   'font-size-btn': 1.125rem,
   'font-size-numbers': 4.5rem,
   'font-size-footer': 0.75rem
