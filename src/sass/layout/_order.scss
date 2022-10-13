@@ -16,7 +16,10 @@
   }
 
   span {
-    margin-left: 0.5rem;
-    text-transform: capitalize;
+    &.color-light {
+      color: color(color-light);
+      margin: 0;
+      margin-right: 0.5rem;
+    }
   }
 }

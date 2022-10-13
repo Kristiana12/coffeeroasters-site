@@ -19,7 +19,7 @@
 
     <title>Frontend Mentor | Coffeeroasters subscription site</title>
     <link rel="stylesheet" href="public/css/styles.css" />
-    <!-- <script defer src="public/js/shared.js"></script> -->
+    <script defer src="public/js/shared.js"></script>
     <script defer src="public/js/plan.js"></script>
   </head>
 
@@ -174,7 +174,7 @@
                     Compatible with Nespresso systems and similar brewers
                   </p>
                 </div>
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-filter="true">
                   <h3 class="subscribe--card__option--title small-title">
                     Filter
                   </h3>
@@ -238,7 +238,7 @@
               </div>
             </div>
 
-            <div class="subscribe--card card" id="quantity">
+            <div class="subscribe--card card quantity" id="quantity">
               <h2 class="subscribe--card__title big-title">
                 How much would you like?
               </h2>
@@ -251,7 +251,7 @@
                 />
               </button>
               <div class="subscribe--card__options" data-index="2">
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-quantity="250">
                   <h3 class="subscribe--card__option--title small-title">
                     250g
                   </h3>
@@ -260,7 +260,7 @@
                     cups.
                   </p>
                 </div>
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-quantity="500">
                   <h3 class="subscribe--card__option--title small-title">
                     500g
                   </h3>
@@ -269,7 +269,7 @@
                     cups.
                   </p>
                 </div>
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-quantity="1000">
                   <h3 class="subscribe--card__option--title small-title">
                     1000g
                   </h3>
@@ -335,7 +335,7 @@
                 />
               </button>
               <div class="subscribe--card__options" data-index="4">
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-time="week">
                   <h3 class="subscribe--card__option--title small-title">
                     Every week
                   </h3>
@@ -343,7 +343,7 @@
                     $14.00 per shipment. Includes free first-class shipping.
                   </p>
                 </div>
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-time="two-weeks">
                   <h3 class="subscribe--card__option--title small-title">
                     Every 2 weeks
                   </h3>
@@ -351,7 +351,7 @@
                     $17.25 per shipment. Includes free priority shipping.
                   </p>
                 </div>
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-time="month">
                   <h3 class="subscribe--card__option--title small-title">
                     Every month
                   </h3>
@@ -366,32 +366,20 @@
           <div class="order card">
             <h4 class="order--title">Order Summary</h4>
             <blockquote class="order--text">
-              “I drink my coffee <span>_____</span>, with a
-              <span>_____</span> type of bean. <span>_____</span> ground ala
-              <span>_____</span>, sent to me <span>_____</span>.”
+              “I drink my coffee <span class="empty">_____</span>, with a
+              <span class="empty">_____</span> type of bean.
+              <span class="empty">_____</span>
+              <span class="grind">ala <span class="empty">_____</span></span> ,
+              sent to me <span class="empty">_____</span>.”
             </blockquote>
           </div>
         </section>
 
-        <a href="plan.html" class="btn btn-primary plan__btn-primary"
-          >Create my plan!</a
-        >
+        <button class="btn btn-primary plan__btn-primary">
+          Create my plan!
+        </button>
       </div>
     </main>
-
-    <!-- Modal -->
-    <!-- Order Summary
-
-  “I drink coffee _____, with a _____ type of bean. _____ ground ala _____,
-  sent to me _____.”
-
-  Is this correct? You can proceed to checkout or go back to plan selection if something 
-  is off. Subscription discount codes can also be redeemed at the checkout.
-
-  $_____/month
-
-  Checkout -->
-    <!-- End modal -->
 
     <footer>
       <div class="footer-container">
@@ -453,5 +441,25 @@
         </ul>
       </div>
     </footer>
+
+    <div class="modal hide">
+      <h4 class="modal--title">Order Summary</h4>
+      <blockquote class="modal--order">
+        “I drink my coffee <span class="empty">_____</span>, with a
+        <span class="empty">_____</span> type of bean.
+        <span class="empty">_____</span>
+        <span class="grind">ala <span class="empty">_____</span></span> , sent
+        to me <span class="empty">_____</span>.”
+      </blockquote>
+      <p class="modal--para">
+        Is this correct? You can proceed to checkout or go back to plan
+        selection if something is off. Subscription discount codes can also be
+        redeemed at the checkout.
+      </p>
+      <button class="btn btn-primary">
+        Checkout - $<span class="end-price">_____</span>/mo
+      </button>
+    </div>
+    <div class="overlay hide"></div>
   </body>
 </html>

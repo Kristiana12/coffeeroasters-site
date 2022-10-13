@@ -12,6 +12,7 @@
   animation: fadeIn 0.8s 0.5s ease-in-out backwards;
 }
 
+//Titles
 .big-title {
   margin-bottom: 4.5rem;
 
@@ -24,6 +25,7 @@
   margin: 1.5rem auto;
 }
 
+//colors
 .lighter {
   color: color(color-light-op);
 }
@@ -91,4 +93,15 @@
 //Order
 .colorize {
   color: color(color-primary);
+}
+
+//modal
+.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.close {
+  visibility: visible;
+  opacity: 1;
 }

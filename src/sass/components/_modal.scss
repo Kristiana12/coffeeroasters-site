@@ -1,0 +1,46 @@
+@use '../abstracts/index' as *;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: color(color-light-dark);
+  z-index: 60;
+  opacity: 0.9;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 70;
+  width: min(90%, 430px);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: color(color-light);
+  padding-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+  &--title {
+    padding: 1.75rem 1.25rem;
+    background-color: color(color-dark);
+    align-self: stretch;
+  }
+
+  &--order {
+    padding: 3rem 1.5rem 0.5rem;
+  }
+
+  &--para {
+    padding: 0 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  & button {
+    margin: 0 1.5rem;
+  }
+}
