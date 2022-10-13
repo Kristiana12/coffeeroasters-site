@@ -1,19 +1,125 @@
-const subscribe = document.querySelector('.subscribe');
-const cards = document.querySelectorAll('.subscribe--card__option');
-const categories = document.querySelectorAll('.subscribe__categories p');
-const createPlanBtn = document.querySelector('.plan__btn-primary');
+// each section question
+const methodSection = document.getElementById('preferences');
+const coffeeTypeSection = document.getElementById('bean-type');
+const quantitySection = document.getElementById('quantity');
+const grindSection = document.getElementById('grind-options');
+const deliveriesSection = document.getElementById('deliveries');
+
+// modal
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
+const modalSummaryText = modal.querySelector('.modal--order');
 
-function removeClass(elements, className) {
-  if (HTMLCollection.prototype.isPrototypeOf(elements)) {
-    elements = [...elements];
-  }
-  elements.forEach((el) => el.classList.remove(className));
-}
+// pricing spans
+const weekPricing = document.querySelector('#week-pricing');
+const twoWeekPricing = document.querySelector('#two-week-pricing');
+const monthPricing = document.querySelector('#month-pricing');
+
+//Text outputs
+const summaryText = document.querySelector('.order--text');
+
+// buttons
+const arrowBtns = document.querySelectorAll('.subscribe--card__button');
+const createPlanBtn = document.querySelector('.plan__btn-primary');
+const checkoutBtn = document.getElementById('checkout');
 
 //FUNCTIONS
 //Collapse Accordeon
+
+const SUMMARY_PLACEHOLDER = '_____';
+
+const PRICING_DATA = {
+  250: {
+    week: 7.2,
+    twoWeeks: 9.6,
+    month: 12,
+  },
+  500: {
+    week: 13.0,
+    twoWeeks: 17.5,
+    month: 22.0,
+  },
+  1000: {
+    week: 22.0,
+    twoWeeks: 32.0,
+    month: 42.0,
+  },
+};
+
+//For the Summary
+let method = '';
+let coffeeType = '';
+let quantity = '';
+let grind = '';
+let frequency = '';
+
+/*/ Creating the Summary Text /*/
+const createSpan = (text = SUMMARY_PLACEHOLDER) => {
+  return `<span>${text}</span>`;
+};
+
+const createMethodPart = () => {
+  if (method === '') {
+    return createSpan();
+  }
+  const joiningWord = method === 'capsule' ? 'using' : 'as';
+  return `${joiningWord} ${createSpan(method)}`;
+};
+
+const createCoffeeTypePart = () => {
+  const type = coffeeType || SUMMARY_PLACEHOLDER;
+  return createSpan(type);
+};
+
+const createQuantityPart = () => {
+  if (quantity === '') return createSpan();
+  const quantityText = `${quantity}g`;
+  return createSpan(quantityText);
+};
+
+const createGrindPart = () => {
+  if (method === 'capsule') return '';
+  const grindText = `ground ala ${grind ? createSpan(grind) : createSpan()}, `;
+  return grindText;
+};
+
+const createFrequencyPart = () => {
+  if (frequency === '') return createSpan();
+  const frequencyText = `every ${frequency}`;
+  return createSpan(frequencyText);
+};
+
+//Disable Grind when capsules is Selected
+const disableGrindText = (method) => {
+  const grindContainer = document.getElementById('grind-options');
+  const grindContainerBtn = grindContainer.querySelector(
+    '.subscribe--card__button'
+  );
+  const isCapsules = method === 'capsule';
+  if (isCapsules) {
+    grindContainerBtn.style.filter = 'grayscale(100%)';
+    grindContainerBtn.setAttribute('disabled', 'disabled');
+  }
+};
+
+const createSummary = () => {
+  const methodText = createMethodPart();
+  const coffeeTypeText = createCoffeeTypePart();
+  const quantityText = createQuantityPart();
+  const grindText = createGrindPart();
+  const frequencyText = createFrequencyPart();
+
+  return `“I drink coffee ${methodText}, with a ${coffeeTypeText} type of bean. ${quantityText}, ${grindText}sent to me ${frequencyText}.”`;
+};
+
+const insertSummary = () => {
+  summaryText.innerHTML = createSummary();
+};
+
+insertSummary();
+
+/*/ STYLING /*/
+//collapse accordeon
 function collapseOption(element) {
   //get the height of the elements inner content
   const optionHeight = element.scrollHeight;
@@ -36,6 +142,7 @@ function collapseOption(element) {
 
   //mark the section as 'currently collapsed'
   element.setAttribute('data-collapsed', 'true');
+  element.setAttribute('aria-label', 'closed');
 }
 
 //Expand Accordeon
@@ -58,6 +165,7 @@ function expandOption(element) {
 
   //mark the section as currently not colllapsed
   element.setAttribute('data-collapsed', 'false');
+  element.setAttribute('aria-label', 'opened');
 }
 
 //Check if Accordeon open or closed
@@ -71,169 +179,114 @@ const checkAccordeonStatus = (element) => {
   }
 };
 
-//Show Hide the cards
-function toggleOptionHeight(e) {
-  const btnArrow = e.target.parentElement;
-  if (btnArrow.classList.contains('subscribe--card__button')) {
-    btnArrow.classList.toggle('close');
-    //Create accordion functionality
-    const cardContainer = btnArrow.nextElementSibling;
-    checkAccordeonStatus(cardContainer);
-  }
-}
+const disableGrindSection = (option) => {
+  method = option.dataset.method;
 
-//Change Text on the Summary
-function displaySummary(parentElement, element) {
-  const orderSummarySpans = document.querySelectorAll(
-    '.order--text span.empty'
+  //what needs to change
+  const grindContainer = grindSection.querySelector(
+    '.subscribe--card__options'
   );
+  const btnArrow = grindSection.querySelector('.subscribe--card__button');
 
-  orderSummarySpans[parentElement.dataset.index].style.color = '#0e8784';
-  //Change the text based on the option
-  orderSummarySpans[parentElement.dataset.index].innerHTML =
-    element.querySelector('h3').innerHTML;
-
-  //use at the end to not overwrite it
-  if (element.dataset.capsule || element.dataset.filter) {
-    const word = element.dataset.capsule
-      ? `<span class='color-light'> using </span>`
-      : `<span class='color-light'> as </span>`;
-    const sentence = word + element.querySelector('h3').innerHTML;
-    orderSummarySpans[0].innerHTML = sentence;
+  if (method === 'capsule') {
+    collapseOption(grindContainer);
+    btnArrow.style.filter = 'grayscale(100%)';
+    btnArrow.setAttribute('disabled', 'disabled');
+    btnArrow.classList.add('close');
+  } else {
+    btnArrow.removeAttribute('disabled');
+    btnArrow.style.filter = null;
   }
-}
+};
 
-//Set active class
-function changeCardStatus(e) {
+//remove active Classes
+const removeActiveClass = (elements) => {
+  if (HTMLCollection.prototype.isPrototypeOf(elements)) {
+    elements = [...elements];
+  }
+  elements.forEach((el) => el.classList.remove('active'));
+};
+
+//add active class
+const updateCardUI = (selectedCard) => {
+  const allCards = selectedCard.parentElement.children;
+  removeActiveClass(allCards);
+  selectedCard.classList.add('active');
+};
+
+/*/ Check which cards are selected based on the dataset/*/
+const handleMethodChoice = (option) => {
+  method = option.dataset.method;
+  disableGrindText(method);
+  insertSummary();
+};
+
+const handleCoffeeTypeChoice = (option) => {
+  coffeeType = option.dataset.coffeeType;
+  insertSummary();
+};
+
+// inserting prices
+const insertingPricingData = (quantity) => {
+  const { week, twoWeeks, month } = PRICING_DATA[quantity];
+  weekPricing.textContent = `$${week.toFixed(2)}`;
+  twoWeekPricing.textContent = `$${twoWeeks.toFixed(2)}`;
+  monthPricing.textContent = `$${month.toFixed(2)}`;
+};
+
+const handleQuantityChoice = (option) => {
+  quantity = option.dataset.quantity;
+  insertingPricingData(quantity);
+  insertSummary();
+};
+
+const handleGrindChoice = (option) => {
+  grind = option.dataset.grind;
+  insertSummary();
+};
+
+const handleFrequencyChoice = (option) => {
+  frequency = option.dataset.delivery;
+  insertSummary();
+};
+
+const calcEndPrices = () => {
+  switch (frequency) {
+    case 'week':
+      return (4 * PRICING_DATA[quantity].week).toFixed(2);
+    case '2 weeks':
+      return (2 * PRICING_DATA[quantity].twoWeeks).toFixed(2);
+    case 'month':
+      return (1 * PRICING_DATA[quantity].month).toFixed(2);
+    default:
+      return '0.00';
+  }
+};
+
+const checkChoices = () => {
+  const methodChosen = method !== '';
+  const coffeeTypeChosen = coffeeType !== '';
+  const quantityChosen = quantity !== '';
+  const grindChosen = method !== 'capsule' ? grind !== '' : true;
+  const frequencyChosen = frequency !== '';
+  const shouldActivate =
+    methodChosen &&
+    coffeeTypeChosen &&
+    quantityChosen &&
+    grindChosen &&
+    frequencyChosen;
+
+  return shouldActivate;
+};
+
+const sectionHandlers = (e, handler) => {
   const selectedCard = e.target.closest('.subscribe--card__option');
-  //if not a descedant or the card itself is selected then ignore
   if (!selectedCard) return;
+  updateCardUI(selectedCard);
+  handler(selectedCard);
+};
 
-  //Activate clicked card
-  if (selectedCard.classList.contains('subscribe--card__option')) {
-    const containerSelected = selectedCard.parentElement;
-
-    if (containerSelected) {
-      removeClass(containerSelected.children, 'active');
-      selectedCard.classList.add('active');
-
-      displaySummary(containerSelected, selectedCard);
-      containerSelected.classList.add('clicked');
-      if (containerSelected.classList.contains('clicked')) {
-        containerSelected.classList.remove('clicked');
-        containerSelected.classList.add('clicked');
-      }
-    }
-
-    //Check which quantity card is active
-    const quantitySection = document.getElementById('quantity');
-    const quantityCards = quantitySection.querySelectorAll(
-      '.subscribe--card__option'
-    );
-    const selectedQuantityCard = [...quantityCards].filter((card) =>
-      card.classList.contains('active')
-    );
-
-    //Check which delivery card is active
-    const deliverySection = document.getElementById('deliveries');
-    const deliveryCards = deliverySection.querySelectorAll(
-      '.subscribe--card__option'
-    );
-
-    const selectedDeliveryCard = [...deliveryCards].some((card) =>
-      card.classList.contains('active')
-    );
-
-    //Setting the prices based on the quantity
-    const prices = {
-      shipmentPerWeek: function () {
-        return this.perWeek * 4;
-      },
-      shipmentPerTwoWeek: function () {
-        return this.perTwoWeeks * 2;
-      },
-      shipmentPerMonth: function () {
-        return this.perMonth * 1;
-      },
-    };
-
-    function checkPrices(selectedQuantityCard, selectedQuantityCardNODE) {
-      if (
-        selectedQuantityCardNODE.dataset.quantity == 250 &&
-        selectedQuantityCard
-      ) {
-        prices.perWeek = 7.2;
-        prices.perTwoWeeks = 9.6;
-        prices.perMonth = 12.0;
-      } else if (
-        selectedQuantityCardNODE.dataset.quantity == 500 &&
-        selectedQuantityCard
-      ) {
-        prices.perWeek = 13.0;
-        prices.perTwoWeeks = 17.5;
-        prices.perMonth = 22.0;
-      } else if (
-        selectedQuantityCardNODE.dataset.quantity == 1000 &&
-        selectedQuantityCard
-      ) {
-        prices.perWeek = 22.0;
-        prices.perTwoWeeks = 32.0;
-        prices.perMonth = 42.0;
-      }
-    }
-
-    function showPrices() {
-      let shipment;
-
-      if (selectedCard.dataset.time === 'week' && selectedDeliveryCard) {
-        checkPrices(selectedQuantityCard, ...selectedQuantityCard);
-        shipment = prices.shipmentPerWeek();
-      } else if (
-        selectedCard.dataset.time === 'two-weeks' &&
-        selectedDeliveryCard
-      ) {
-        checkPrices(selectedQuantityCard, ...selectedQuantityCard);
-        shipment = prices.shipmentPerTwoWeek();
-      } else if (
-        selectedCard.dataset.time === 'month' &&
-        selectedDeliveryCard
-      ) {
-        checkPrices(selectedQuantityCard, ...selectedQuantityCard);
-        shipment = prices.shipmentPerMonth();
-      }
-    }
-
-    if (selectedQuantityCard && selectedDeliveryCard) {
-      showPrices();
-    }
-  }
-}
-
-//Hide Grind Options if Capsule selected
-function disableGrindOption() {
-  const grindContainer = document.getElementById('grind-options');
-  const capsuleCard = document.querySelector(
-    '.subscribe--card__option[data-capsule="true"]'
-  );
-  const grindText = document.querySelector('span.grind');
-
-  const grindContainerBtn = grindContainer.querySelector(
-    '.subscribe--card__button'
-  );
-
-  if (capsuleCard.classList.contains('active')) {
-    collapseOption(grindContainer.querySelector('.subscribe--card__options'));
-    grindContainerBtn.style.filter = 'grayscale(100%)';
-    grindContainerBtn.setAttribute('disabled', 'disabled');
-    if (grindText) {
-      grindText.innerHTML = `<span class="empty"></span>`;
-    }
-  } else if (!capsuleCard.classList.contains('active')) {
-    grindContainerBtn.removeAttribute('disabled');
-    grindContainerBtn.style.filter = null;
-  }
-}
-
+//MODAL
 //Open Modal
 const openModal = () => {
   modal.classList.remove('hide');
@@ -249,12 +302,57 @@ const closeModal = () => {
   overlay.classList.add('hide');
 };
 
-//Bind each function with the object you need
-subscribe.addEventListener('click', toggleOptionHeight.bind(subscribe));
-subscribe.addEventListener('click', changeCardStatus.bind(subscribe));
-subscribe.addEventListener('click', disableGrindOption);
-createPlanBtn.addEventListener('click', openModal);
+/*/ EVENLISTENERS /*/
+// CARDS
+methodSection.addEventListener('click', (e) => {
+  const selectedCard = e.target.closest('.subscribe--card__option');
+  if (!selectedCard) return;
+  handleMethodChoice(selectedCard);
+  updateCardUI(selectedCard);
+  disableGrindSection(selectedCard);
+});
+
+coffeeTypeSection.addEventListener('click', (e) => {
+  sectionHandlers(e, handleCoffeeTypeChoice);
+});
+
+quantitySection.addEventListener('click', (e) => {
+  sectionHandlers(e, handleQuantityChoice);
+});
+
+grindSection.addEventListener('click', (e) => {
+  sectionHandlers(e, handleGrindChoice);
+});
+
+deliveriesSection.addEventListener('click', (e) => {
+  sectionHandlers(e, handleFrequencyChoice);
+});
+
 overlay.addEventListener('click', closeModal);
+//BUTTONS
+arrowBtns.forEach((btn) =>
+  btn.addEventListener('click', (e) => {
+    const btnArrow = e.target.closest('.subscribe--card__button');
+    btnArrow.classList.toggle('close');
+    //DOM Traversing, container should change height
+    const targetedContainer = btnArrow.nextElementSibling;
+    checkAccordeonStatus(targetedContainer);
+  })
+);
+
+createPlanBtn.addEventListener('click', function () {
+  if (checkChoices()) {
+    openModal();
+    modalSummaryText.innerHTML = summaryText.innerHTML;
+    const subscriptionPrice = document.querySelector('.end-price');
+    const modalSubscriptionPrice = document.querySelector('.end-price-modal');
+    subscriptionPrice.innerHTML = calcEndPrices();
+    modalSubscriptionPrice.innerHTML = subscriptionPrice.innerHTML;
+  }
+});
+
+checkoutBtn.addEventListener('click', closeModal);
+
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeModal();

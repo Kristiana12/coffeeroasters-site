@@ -24,7 +24,7 @@
   </head>
 
   <body>
-    <nav class="nav mobile">
+    <nav class="nav">
       <img
         class="nav__img"
         src="public/assets/shared/mobile/logo.svg"
@@ -166,7 +166,7 @@
                 />
               </button>
               <div class="subscribe--card__options" data-index="0">
-                <div class="subscribe--card__option" data-capsule="true">
+                <div class="subscribe--card__option" data-method="capsule">
                   <h3 class="subscribe--card__option--title small-title">
                     Capsule
                   </h3>
@@ -174,7 +174,7 @@
                     Compatible with Nespresso systems and similar brewers
                   </p>
                 </div>
-                <div class="subscribe--card__option" data-filter="true">
+                <div class="subscribe--card__option" data-method="filter">
                   <h3 class="subscribe--card__option--title small-title">
                     Filter
                   </h3>
@@ -183,7 +183,7 @@
                     V60
                   </p>
                 </div>
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-method="espresso">
                   <h3 class="subscribe--card__option--title small-title">
                     Espresso
                   </h3>
@@ -208,7 +208,10 @@
                 />
               </button>
               <div class="subscribe--card__options" data-index="1">
-                <div class="subscribe--card__option">
+                <div
+                  class="subscribe--card__option"
+                  data-coffee-type="single origin"
+                >
                   <h3 class="subscribe--card__option--title small-title">
                     Single origin
                   </h3>
@@ -217,7 +220,7 @@
                     farm
                   </p>
                 </div>
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-coffee-type="decaf">
                   <h3 class="subscribe--card__option--title small-title">
                     Decaf
                   </h3>
@@ -226,7 +229,7 @@
                     removed
                   </p>
                 </div>
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-coffee-type="blended">
                   <h3 class="subscribe--card__option--title small-title">
                     Blended
                   </h3>
@@ -294,7 +297,7 @@
                 />
               </button>
               <div class="subscribe--card__options" data-index="3">
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-grind="wholebean">
                   <h3 class="subscribe--card__option--title small-title">
                     Wholebean
                   </h3>
@@ -302,7 +305,7 @@
                     Best choice if you cherish the full sensory experience
                   </p>
                 </div>
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-grind="filter">
                   <h3 class="subscribe--card__option--title small-title">
                     Filter
                   </h3>
@@ -311,7 +314,7 @@
                     Aeropress
                   </p>
                 </div>
-                <div class="subscribe--card__option">
+                <div class="subscribe--card__option" data-grind="cafetiére">
                   <h3 class="subscribe--card__option--title small-title">
                     Cafetiére
                   </h3>
@@ -335,28 +338,31 @@
                 />
               </button>
               <div class="subscribe--card__options" data-index="4">
-                <div class="subscribe--card__option" data-time="week">
+                <div class="subscribe--card__option" data-delivery="week">
                   <h3 class="subscribe--card__option--title small-title">
                     Every week
                   </h3>
                   <p class="subscribe--card__option--para darker">
-                    $14.00 per shipment. Includes free first-class shipping.
+                    <span id="week-pricing">$14.00</span> per shipment. Includes
+                    free first-class shipping.
                   </p>
                 </div>
-                <div class="subscribe--card__option" data-time="two-weeks">
+                <div class="subscribe--card__option" data-delivery="2 weeks">
                   <h3 class="subscribe--card__option--title small-title">
                     Every 2 weeks
                   </h3>
                   <p class="subscribe--card__option--para darker">
-                    $17.25 per shipment. Includes free priority shipping.
+                    <span id="two-week-pricing">$17.25</span> per shipment.
+                    Includes free priority shipping.
                   </p>
                 </div>
-                <div class="subscribe--card__option" data-time="month">
+                <div class="subscribe--card__option" data-delivery="month">
                   <h3 class="subscribe--card__option--title small-title">
                     Every month
                   </h3>
                   <p class="subscribe--card__option--para darker">
-                    $22.50 per shipment. Includes free priority shipping.
+                    <span id="month-pricing">$22.50</span> per shipment.
+                    Includes free priority shipping.
                   </p>
                 </div>
               </div>
@@ -365,13 +371,7 @@
 
           <div class="order card">
             <h4 class="order--title">Order Summary</h4>
-            <blockquote class="order--text">
-              “I drink my coffee <span class="empty">_____</span>, with a
-              <span class="empty">_____</span> type of bean.
-              <span class="empty">_____</span>
-              <span class="grind">ala <span class="empty">_____</span></span> ,
-              sent to me <span class="empty">_____</span>.”
-            </blockquote>
+            <blockquote class="order--text"></blockquote>
           </div>
         </section>
 
@@ -444,21 +444,19 @@
 
     <div class="modal hide">
       <h4 class="modal--title">Order Summary</h4>
-      <blockquote class="modal--order">
-        “I drink my coffee <span class="empty">_____</span>, with a
-        <span class="empty">_____</span> type of bean.
-        <span class="empty">_____</span>
-        <span class="grind">ala <span class="empty">_____</span></span> , sent
-        to me <span class="empty">_____</span>.”
-      </blockquote>
+      <blockquote class="modal--order"></blockquote>
       <p class="modal--para">
         Is this correct? You can proceed to checkout or go back to plan
         selection if something is off. Subscription discount codes can also be
         redeemed at the checkout.
       </p>
-      <button class="btn btn-primary">
+      <button class="btn btn-primary btn-mobile">
         Checkout - $<span class="end-price">_____</span>/mo
       </button>
+      <div class="modal--pricing">
+        <p>$<span class="end-price-modal">_____</span> / mo</p>
+        <button class="btn btn-primary" id="checkout">Checkout</button>
+      </div>
     </div>
     <div class="overlay hide"></div>
   </body>
