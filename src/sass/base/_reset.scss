@@ -471,6 +471,7 @@ blockquote {
 
 dialog {
   border: 0;
+  box-sizing: border-box;
 }
 
 ::selection {

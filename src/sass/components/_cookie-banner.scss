@@ -2,26 +2,29 @@
 
 .cookies-banner {
   position: fixed;
-  top: 50%;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   z-index: 120;
   background-color: color(color-banner);
-  border-radius: 8px;
-  width: min(90%, 280px);
+  width: 100%;
   margin: 0 auto;
-  padding: 1.75rem 1rem;
-  @include tablet {
-    width: min(90%, 500px);
-    padding: 2.5rem 2rem;
+  padding: 1.25rem;
+  border-radius: 8px 8px 0 0;
+  @include tablet-small {
+    width: min(90%, 1280px);
+    padding: 1rem;
   }
+
   &--wrapper {
     text-align: center;
-    @include tablet {
+    @include tablet-small {
       display: flex;
       align-items: center;
       text-align: left;
       gap: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     @include desktop {
@@ -30,10 +33,10 @@
   }
 
   &--img {
-    max-width: 240px;
+    max-width: 200px;
     margin: 0 auto 1.5rem;
 
-    @include tablet {
+    @include tablet-small {
       margin: 0 auto;
     }
     img {
@@ -46,9 +49,12 @@
   &--content {
     display: grid;
     grid-template-columns: 1fr;
-
-    @include tablet {
+    max-width: 400px;
+    margin: 0 auto;
+    @include tablet-small {
       display: block;
+    }
+    @include desktop {
     }
 
     p {
