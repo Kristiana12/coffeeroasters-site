@@ -85,6 +85,18 @@
   }
 }
 
+.disable {
+  background-color: color(color-light-dark);
+  cursor: not-allowed;
+
+  &:hover,
+  &:focus {
+    background-color: color(color-light-dark);
+    cursor: not-allowed;
+    transform: scale(1);
+  }
+}
+
 //close options
 .subscribe--card__button.close {
   transform: rotate(0);

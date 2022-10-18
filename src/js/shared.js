@@ -1,6 +1,5 @@
 const btnMenuOpen = document.querySelector('.menu-icon');
 const headerChildren = [...document.querySelector('.header__content').children];
-
 const sections = document.querySelectorAll('.section');
 
 //Show-Hide Navigation

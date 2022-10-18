@@ -194,3 +194,11 @@ p {
     }
   }
 }
+
+//Cookies Banner
+.cookies-banner {
+  &--content p,
+  &--content button {
+    @include title(color-light, font-size-footer);
+  }
+}

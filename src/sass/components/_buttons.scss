@@ -3,3 +3,27 @@
 .btn-primary {
   @include btn(color-light, color-primary);
 }
+
+.cookies-banner {
+  .btn-cookies-accept,
+  .btn-cookies-cancel {
+    padding: 0.5rem 1rem;
+  }
+
+  .btn-cookies-accept {
+    margin: 1.5rem auto 0.75rem;
+
+    @include tablet {
+      margin-right: 1.5rem;
+    }
+  }
+
+  .btn-cookies-cancel {
+    background-color: transparent;
+    color: color(color-light-m);
+    padding: 0;
+    &:hover {
+      color: color(color-light-op);
+    }
+  }
+}

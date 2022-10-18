@@ -9,7 +9,7 @@
 
   &__title {
     margin-bottom: 2rem;
-
+    cursor: default;
     @include desktop {
       margin-bottom: -4rem;
     }

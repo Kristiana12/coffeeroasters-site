@@ -20,7 +20,7 @@ const summaryText = document.querySelector('.order--text');
 
 // buttons
 const arrowBtns = document.querySelectorAll('.subscribe--card__button');
-const createPlanBtn = document.querySelector('.plan__btn-primary');
+const planBtn = document.querySelector('.plan__btn-primary');
 const checkoutBtn = document.getElementById('checkout');
 
 //FUNCTIONS
@@ -120,7 +120,7 @@ insertSummary();
 
 /*/ STYLING /*/
 //collapse accordeon
-function collapseOption(element) {
+const collapseOption = (element) => {
   //get the height of the elements inner content
   const optionHeight = element.scrollHeight;
 
@@ -143,10 +143,10 @@ function collapseOption(element) {
   //mark the section as 'currently collapsed'
   element.setAttribute('data-collapsed', 'true');
   element.setAttribute('aria-label', 'closed');
-}
+};
 
 //Expand Accordeon
-function expandOption(element) {
+const expandOption = (element) => {
   //get the height of the elemen's inner content
   const optionHeight = element.scrollHeight;
 
@@ -166,7 +166,7 @@ function expandOption(element) {
   //mark the section as currently not colllapsed
   element.setAttribute('data-collapsed', 'false');
   element.setAttribute('aria-label', 'opened');
-}
+};
 
 //Check if Accordeon open or closed
 const checkAccordeonStatus = (element) => {
@@ -279,11 +279,19 @@ const checkChoices = () => {
   return shouldActivate;
 };
 
+//Check if all cards are active
+const activatePlanBtn = () => {
+  if (checkChoices()) {
+    planBtn.classList.remove('disable');
+  }
+};
+
 const sectionHandlers = (e, handler) => {
   const selectedCard = e.target.closest('.subscribe--card__option');
   if (!selectedCard) return;
   updateCardUI(selectedCard);
   handler(selectedCard);
+  activatePlanBtn();
 };
 
 //MODAL
@@ -310,6 +318,7 @@ methodSection.addEventListener('click', (e) => {
   handleMethodChoice(selectedCard);
   updateCardUI(selectedCard);
   disableGrindSection(selectedCard);
+  activatePlanBtn();
 });
 
 coffeeTypeSection.addEventListener('click', (e) => {
@@ -340,7 +349,7 @@ arrowBtns.forEach((btn) =>
   })
 );
 
-createPlanBtn.addEventListener('click', function () {
+planBtn.addEventListener('click', function () {
   if (checkChoices()) {
     openModal();
     modalSummaryText.innerHTML = summaryText.innerHTML;

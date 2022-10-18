@@ -1,7 +1,10 @@
 const imgsToLoad = document.querySelectorAll('img[data-src]');
-const headerChildren = [...document.querySelector('.header__content').children];
-const sections = document.querySelectorAll('.section');
 const cards = document.querySelectorAll('.card');
+
+//Cookies Banner
+const cookiesAcceptBtn = document.querySelector('.btn-cookies-accept');
+const cookiesCancelBtn = document.querySelector('.btn-cookies-cancel');
+const cookiesBanner = document.querySelector('.cookies-banner');
 
 // Functions
 // Hide DOM Elements
@@ -13,8 +16,6 @@ const showElements = (DOMElements) => {
   DOMElements.forEach((el) => el.classList.remove('hidden'));
 };
 
-hideElements(headerChildren);
-hideElements(sections);
 hideElements(cards);
 
 //Add breakline
@@ -27,14 +28,6 @@ const addBreakLine = () => {
 addBreakLine();
 
 window.addEventListener('resize', addBreakLine);
-
-//Fade in Header Elements
-document.addEventListener('DOMContentLoaded', function () {
-  headerChildren.forEach((el) => {
-    showElements(headerChildren);
-    el.classList.add('fade-in');
-  });
-});
 
 //OBSERVERS
 //Lazy loading images
@@ -61,24 +54,6 @@ const imgObs = new IntersectionObserver(loadImg, {
 
 imgsToLoad.forEach((img) => imgObs.observe(img));
 
-//Section fadind-sliding In
-const showSection = (entries, observer) => {
-  const [entry] = entries;
-
-  if (!entry.isIntersecting) return;
-
-  entry.target.classList.remove('hidden');
-
-  observer.unobserve(entry.target);
-};
-
-const sectionObs = new IntersectionObserver(showSection, {
-  root: null,
-  threshold: 0.1,
-});
-
-sections.forEach((sect) => sectionObs.observe(sect));
-
 //Fade-in Cards
 const showCards = (entries, observer) => {
   entries.forEach((entry) => {
@@ -97,5 +72,17 @@ const cardsObs = new IntersectionObserver(showCards, {
 
 cards.forEach((card) => cardsObs.observe(card));
 
-//Add breakline
-// console.log(document.querySelector('.steps--content__card--title'));
+//DIALOG
+function closeDialog(element) {
+  this.removeAttribute('open', 'open');
+  this.setAttribute('close', 'close');
+}
+
+const showCookiesBanner = () => {
+  cookiesBanner.setAttribute('open', 'open');
+};
+
+setTimeout(showCookiesBanner, 3000);
+
+cookiesAcceptBtn.addEventListener('click', closeDialog.bind(cookiesBanner));
+cookiesCancelBtn.addEventListener('click', closeDialog.bind(cookiesBanner));

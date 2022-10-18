@@ -312,5 +312,46 @@
         </ul>
       </div>
     </footer>
+
+    <dialog class="cookies-banner">
+      <div class="cookies-banner--wrapper">
+        <div class="cookies-banner--img">
+          <picture>
+            <source
+              media="(max-width: 499px)"
+              srcset="
+                public/assets/home/mobile/cookies-with-dark-chocolate-chips.jpg
+              "
+            />
+            <source
+              media="(max-width: 999px)"
+              srcset="
+                public/assets/home/tablet/cookies-with-dark-chocolate-chips.jpg
+              "
+            />
+            <source
+              media="(min-width: 1000px)"
+              srcset="
+                public/assets/home/desktop/cookies-with-dark-chocolate-chips.jpg
+              "
+            />
+            <img
+              src="public/assets/home/mobile/cookies-with-dark-chocolate-chips.jpg"
+              alt="Cookies with dark chocolate chips"
+            />
+          </picture>
+        </div>
+        <div class="cookies-banner--content">
+          <p>
+            This website uses cookies or similar technologies, to enhance your
+            browsing experience and provide personalized recommendations. By
+            continuing to use our website, you agree to our
+            <a class="privacy-policy--link" href="#">Privacy Policy</a>
+          </p>
+          <button class="btn-primary btn-cookies-accept">Accept</button>
+          <button class="btn-primary btn-cookies-cancel">Cancel</button>
+        </div>
+      </div>
+    </dialog>
   </body>
 </html>

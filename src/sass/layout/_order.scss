@@ -8,6 +8,8 @@
   border-radius: 8px;
 
   @include desktop {
+    background: url(../assets/plan/desktop/bg-order-summary.png) no-repeat
+      center/cover;
     grid-column: 2 / 3;
   }
 

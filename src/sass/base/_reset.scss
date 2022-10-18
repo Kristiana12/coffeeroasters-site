@@ -468,3 +468,12 @@ button {
 blockquote {
   word-spacing: 4px;
 }
+
+dialog {
+  border: 0;
+}
+
+::selection {
+  color: color(color-light);
+  background-color: color(color-primary);
+}

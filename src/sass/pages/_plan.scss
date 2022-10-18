@@ -28,10 +28,12 @@
   margin-right: -5%;
 
   @include tablet {
+    background: url(../assets/plan/tablet/bg-steps.png) no-repeat center/cover;
     padding: 6rem 3.5rem;
     max-width: 1280px;
   }
   @include desktop {
+    background: url(../assets/plan/desktop/bg-steps.png) no-repeat center/cover;
     margin: auto 0;
   }
 
