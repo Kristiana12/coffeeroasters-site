@@ -6,16 +6,6 @@ const cookiesAcceptBtn = document.querySelector('.btn-cookies-accept');
 const cookiesCancelBtn = document.querySelector('.btn-cookies-cancel');
 const cookiesBanner = document.querySelector('.cookies-banner');
 
-// Functions
-// Hide DOM Elements
-const hideElements = (DOMElements) => {
-  DOMElements.forEach((el) => el.classList.add('hidden'));
-};
-//Show DOM Elements
-const showElements = (DOMElements) => {
-  DOMElements.forEach((el) => el.classList.remove('hidden'));
-};
-
 hideElements(cards);
 
 //Add breakline
@@ -24,6 +14,7 @@ const addBreakLine = () => {
   const withoutBr = `Pick your coffee`;
   const text = window.innerWidth >= 768 ? withBr : withoutBr;
   document.querySelector('.steps--content__card--title').innerHTML = text;
+  // console.log(document.querySelector('.steps--content__card--title'));
 };
 addBreakLine();
 

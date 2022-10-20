@@ -24,6 +24,11 @@
     @content;
   }
 }
+@mixin desktop-2 {
+  @media screen and (min-width: breakpoint(breakpoint-desktop-2)) {
+    @content;
+  }
+}
 
 @mixin imgFillParent {
   width: 100%;
