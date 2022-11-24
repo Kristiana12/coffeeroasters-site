@@ -5,21 +5,21 @@
   flex-direction: column;
   gap: 4rem;
 
+  button {
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+
+    transform: rotate(-180deg);
+    transition: 0.5s ease-in-out;
+  }
+
   @include desktop {
     display: grid;
     grid-template-columns: 255px 1fr;
     grid-template-rows: auto;
-
-    button {
-      border: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: transparent;
-
-      transform: rotate(-180deg);
-      transition: 0.5s ease-in-out;
-    }
   }
 
   //Categories
